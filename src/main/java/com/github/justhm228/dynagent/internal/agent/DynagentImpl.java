@@ -61,9 +61,17 @@ public final class DynagentImpl {
 	}
 
 	/**
+	 * Returns a valid instance of Instrumentation to be used.
+	 *
+	 * <p>
+	 *     <b>
+	 *         Please note that this is method can be called only from the internal API.
+	 *         On any call not from the internal API, this method will throw an IllegalCallerException!
+	 *     </b>
+	 * </p>
 	 *
 	 * @return
-	 * @throws Error
+	 * @throws Error If something went wrong in the JVM.
 	 * @throws IllegalStateException If Dynagent isn't installed yet.
 	 * @throws IllegalCallerException If the caller doesn't exist, can't be found or doesn't belong to the internal API.
 	 */
