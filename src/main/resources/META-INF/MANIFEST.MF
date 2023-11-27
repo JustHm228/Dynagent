@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Premain-Class: com.github.justhm228.dynagent.internal.agent.DynagentImpl
+Agent-Class: com.github.justhm228.dynagent.internal.agent.DynagentImpl
+Can-Retransform-Classes: true
+Can-Redefine-Classes: true
+Can-Set-Native-Method-Prefix: true
+Main-Class: com.github.justhm228.dynagent.internal.agent.DynagentInstaller
+Specification-Title: Dynagent
+Specification-Version: 0.1-build.1
+Specification-Vendor: JustHuman228
+Implementation-Title: dynagent
+Implementation-Version: 0.1-build.1
+Implementation-Vendor: JustHuman228
+

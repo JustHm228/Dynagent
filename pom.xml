@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ The MIT License
+  ~
+  ~ Copyright (c) 2023 Chirkunov Egor
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<project xmlns = "http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>Dynagent</name>
+	<description>A small library which allows you to dynamically load a Java agent to the current VM.</description>
+	<url>https://github.com/JustHm228/Dynagent</url>
+
+	<groupId>com.github.justhm228</groupId>
+	<artifactId>dynagent</artifactId>
+	<version>0.1-build.1</version>
+	<packaging>jar</packaging>
+
+	<developers>
+		<developer>
+			<name>JustHuman228</name>
+			<url>https://github.com/JustHm228</url>
+		</developer>
+	</developers>
+	<contributors>
+		<contributor>
+			<name>JustHuman228</name>
+			<url>https://github.com/JustHm228</url>
+		</contributor>
+	</contributors>
+
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>https://spdx.org/licenses/MIT.txt</url>
+		</license>
+	</licenses>
+	<inceptionYear>2023</inceptionYear>
+
+	<properties>
+		<maven.resources.directory>${basedir}/src/main/resources</maven.resources.directory>
+		<maven.testResources.directory>${basedir}/src/test/resources</maven.testResources.directory>
+		<!-- <maven.plugin.validation>VERBOSE</maven.plugin.validation> -->
+		<maven.compiler.source>20</maven.compiler.source>
+		<maven.compiler.target>20</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<plugin.maven-compiler-plugin.version>3.11.0</plugin.maven-compiler-plugin.version>
+		<plugin.maven-resources-plugin.version>3.3.1</plugin.maven-resources-plugin.version>
+		<plugin.maven-jar-plugin.version>3.3.0</plugin.maven-jar-plugin.version>
+		<plugin.maven-source-plugin.version>3.3.0</plugin.maven-source-plugin.version>
+		<plugin.maven-javadoc-plugin.version>3.6.2</plugin.maven-javadoc-plugin.version>
+		<plugin.maven-surefire-plugin.version>3.1.2</plugin.maven-surefire-plugin.version>
+	</properties>
+
+	<!-- <scm> -->
+	<!-- 	<url>https://github.com/JustHm228/Dynagent/</url> -->
+	<!-- 	<connection>scm:git:https://github.com/JustHm228/Dynagent.git</connection> -->
+	<!-- 	<developerConnection>scm:git:git@github.com:JustHm228/Dynagent.git</developerConnection> -->
+	<!-- 	<tag>HEAD</tag> -->
+	<!-- </scm> -->
+
+	<ciManagement>
+		<system>GitHub Actions</system>
+		<url>https://github.com/JustHm228/Dynagent/actions</url>
+	</ciManagement>
+
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/JustHm228/Dynagent/issues</url>
+	</issueManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${plugin.maven-compiler-plugin.version}</version>
+					<configuration>
+						<!-- <verbose>true</verbose> -->
+						<detail>true</detail>
+						<compilerArgs>
+							<compilerArg>-Xlint:all,-options</compilerArg>
+							<compilerArg>--add-exports</compilerArg>
+							<compilerArg>java.base/jdk.internal.reflect=dynagent.base</compilerArg>
+							<compilerArg>--add-exports</compilerArg>
+							<compilerArg>java.base/jdk.internal.vm.annotation=dynagent.base</compilerArg>
+						</compilerArgs>
+					</configuration>
+					<executions>
+						<execution>
+							<id>compile</id>
+							<phase>package</phase>
+							<goals>
+								<goal>compile</goal>
+							</goals>
+							<inherited>true</inherited>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${plugin.maven-resources-plugin.version}</version>
+					<configuration>
+						<detail>true</detail>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${plugin.maven-jar-plugin.version}</version>
+					<configuration>
+						<detail>true</detail>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+							</manifest>
+							<manifestFile>${maven.resources.directory}/META-INF/MANIFEST.MF</manifestFile>
+						</archive>
+					</configuration>
+					<executions>
+						<execution>
+							<id>generate-binaries</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<inherited>true</inherited>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${plugin.maven-source-plugin.version}</version>
+					<configuration>
+						<detail>true</detail>
+					</configuration>
+					<executions>
+						<execution>
+							<id>generate-sources</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<inherited>true</inherited>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${plugin.maven-javadoc-plugin.version}</version>
+					<configuration>
+						<verbose>true</verbose>
+						<detail>true</detail>
+						<doclint>all,-missing</doclint>
+						<applyJavadocSecurityFix>true</applyJavadocSecurityFix>
+						<detectLinks>true</detectLinks>
+						<detectOfflineLinks>false</detectOfflineLinks>
+						<additionalOptions>
+							<additionalOption>--add-exports</additionalOption>
+							<additionalOption>java.base/jdk.internal.reflect=dynagent.base</additionalOption>
+							<additionalOption>--add-exports</additionalOption>
+							<additionalOption>java.base/jdk.internal.vm.annotation=dynagent.base</additionalOption>
+						</additionalOptions>
+					</configuration>
+					<executions>
+						<execution>
+							<id>generate-javadoc</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<inherited>true</inherited>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${plugin.maven-surefire-plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.surefire</groupId>
+							<artifactId>surefire-junit4</artifactId>
+							<version>${plugin.maven-surefire-plugin.version}</version>
+							<optional>false</optional>
+						</dependency>
+					</dependencies>
+					<configuration>
+						<detail>true</detail>
+						<excludes>
+							<exclude>module-info.java</exclude>
+							<exclude>**/package-info.java</exclude>
+						</excludes>
+						<includes>
+							<include>**/*.java</include>
+						</includes>
+					</configuration>
+					<executions>
+						<execution>
+							<id>test</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>test</goal>
+							</goals>
+							<inherited>true</inherited>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${plugin.maven-compiler-plugin.version}</version>
+				<configuration>
+					<!-- <verbose>true</verbose> -->
+					<detail>true</detail>
+					<compilerArgs>
+						<compilerArg>-Xlint:all,-options</compilerArg>
+						<compilerArg>--add-exports</compilerArg>
+						<compilerArg>java.base/jdk.internal.reflect=dynagent.base</compilerArg>
+						<compilerArg>--add-exports</compilerArg>
+						<compilerArg>java.base/jdk.internal.vm.annotation=dynagent.base</compilerArg>
+					</compilerArgs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>compile</id>
+						<phase>package</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<inherited>true</inherited>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${plugin.maven-resources-plugin.version}</version>
+				<configuration>
+					<detail>true</detail>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${plugin.maven-jar-plugin.version}</version>
+				<configuration>
+					<detail>true</detail>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+						<manifestFile>${maven.resources.directory}/META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate-binaries</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<inherited>true</inherited>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${plugin.maven-source-plugin.version}</version>
+				<configuration>
+					<detail>true</detail>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<inherited>true</inherited>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${plugin.maven-javadoc-plugin.version}</version>
+				<configuration>
+					<verbose>true</verbose>
+					<detail>true</detail>
+					<doclint>all,-missing</doclint>
+					<applyJavadocSecurityFix>true</applyJavadocSecurityFix>
+					<detectLinks>true</detectLinks>
+					<detectOfflineLinks>false</detectOfflineLinks>
+					<additionalOptions>
+						<additionalOption>--add-exports</additionalOption>
+						<additionalOption>java.base/jdk.internal.reflect=dynagent.base</additionalOption>
+						<additionalOption>--add-exports</additionalOption>
+						<additionalOption>java.base/jdk.internal.vm.annotation=dynagent.base</additionalOption>
+					</additionalOptions>
+				</configuration>
+				<executions>
+					<execution>
+						<id>generate-javadoc</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<inherited>true</inherited>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${plugin.maven-surefire-plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit4</artifactId>
+						<version>${plugin.maven-surefire-plugin.version}</version>
+						<optional>false</optional>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<detail>true</detail>
+					<excludes>
+						<exclude>module-info.java</exclude>
+						<exclude>**/package-info.java</exclude>
+					</excludes>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>test</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<inherited>true</inherited>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
