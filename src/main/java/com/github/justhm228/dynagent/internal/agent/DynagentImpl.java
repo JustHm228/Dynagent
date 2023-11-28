@@ -94,13 +94,14 @@ public final class DynagentImpl {
 	 *
 	 * <p>
 	 *     <b>Please note that this is a very experimental feature, which is even not provided in the stable API.</b>
-	 *     The use of this method isn't recommended because it can be deleted at any time for 2 reasons:
-	 *
-	 *     <ul>
-	 *         <li>Obvious pointlessness (at least for now, I simply don't see the point in the program knowing at what stage the Java agent was attached).</li>
-	 *         <li>Complicating the data structure, which could potentially lead to difficult-to-debug errors (long to explain).</li>
-	 *     </ul>
 	 * </p>
+	 *
+	 * The use of this method isn't recommended because it can be deleted at any time for 2 reasons:
+	 *
+	 * <ul>
+	 *     <li>Obvious pointlessness (at least for now, I simply don't see the point in the program knowing at what stage the Java agent was attached).</li>
+	 *     <li>Complicating the data structure, which could potentially lead to difficult-to-debug errors (long to explain).</li>
+	 * </ul>
 	 *
 	 * @return true if Dynagent was installed on JVM startup (via JVM option); otherwise - false.
 	 * @throws Error If something went wrong in the JVM.
