@@ -248,7 +248,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final ClassDefinition[] classes) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	public static void redefineClasses(final ClassDefinition[] classes) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		try {
 
@@ -262,7 +262,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final ClassDefinition aClass) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	public static void redefineClasses(final ClassDefinition aClass) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		try {
 
@@ -276,7 +276,8 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final Class<?> aClass, final File bytecode) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException, OutOfMemoryError, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	public static void redefineClasses(final Class<?> aClass, final File bytecode) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException,
+			ClassNotFoundException, UnmodifiableClassException {
 
 		try {
 
@@ -290,7 +291,8 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final Class<?> aClass, final InputStream bytecode) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException, OutOfMemoryError, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	public static void redefineClasses(final Class<?> aClass, final InputStream bytecode) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException,
+			ClassNotFoundException, UnmodifiableClassException {
 
 		try {
 
@@ -304,7 +306,8 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final Class<?> aClass, final ByteBuffer bytecode) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, OutOfMemoryError, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	public static void redefineClasses(final Class<?> aClass, final ByteBuffer bytecode) throws Error, NullPointerException, IllegalStateException, IllegalCallerException,
+			ClassNotFoundException, UnmodifiableClassException {
 
 		try {
 
@@ -318,7 +321,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final int offset, final int length) throws Error, NullPointerException, IndexOutOfBoundsException, IllegalStateException, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	public static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final int offset, final int length) throws Error, NullPointerException, IndexOutOfBoundsException, IllegalStateException, ClassNotFoundException, UnmodifiableClassException {
 
 		try {
 
@@ -332,7 +335,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final Class<?> aClass, final byte[] bytecode) throws Error, NullPointerException, IllegalStateException, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	public static void redefineClasses(final Class<?> aClass, final byte[] bytecode) throws Error, NullPointerException, IllegalStateException, ClassNotFoundException, UnmodifiableClassException {
 
 		try {
 
@@ -694,7 +697,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final ClassDefinition[] classes, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	private static void redefineClasses(final ClassDefinition[] classes, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		requireNonNull(classes);
 
@@ -735,7 +738,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final ClassDefinition aClass, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	private static void redefineClasses(final ClassDefinition aClass, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		requireNonNull(aClass);
 		requireInstalled(); // Require installation
@@ -756,7 +759,8 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final Class<?> aClass, final File bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException, OutOfMemoryError, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	private static void redefineClasses(final Class<?> aClass, final File bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException,
+			ClassNotFoundException, UnmodifiableClassException {
 
 		requireNonNull(aClass);
 		requireNonNull(bytecode);
@@ -774,7 +778,8 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final Class<?> aClass, final InputStream bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException, OutOfMemoryError, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	private static void redefineClasses(final Class<?> aClass, final InputStream bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException,
+			ClassNotFoundException, UnmodifiableClassException {
 
 		requireNonNull(aClass);
 		requireNonNull(bytecode);
@@ -789,7 +794,8 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final Class<?> aClass, final ByteBuffer bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, OutOfMemoryError, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	private static void redefineClasses(final Class<?> aClass, final ByteBuffer bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException,
+			ClassNotFoundException, UnmodifiableClassException {
 
 		requireNonNull(aClass);
 		requireNonNull(bytecode);
@@ -814,7 +820,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final int offset, final int length, final Class<?> caller) throws Error, NullPointerException, IndexOutOfBoundsException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	private static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final int offset, final int length, final Class<?> caller) throws Error, NullPointerException, IndexOutOfBoundsException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		requireNonNull(aClass);
 		requireNonNull(bytecode);
@@ -831,11 +837,17 @@ public final class Dynagent {
 			throw new IllegalCallerException();
 		}
 
-		redefineClasses(aClass, ByteBuffer.wrap(bytecode, offset, length), caller);
+		{
+
+			final byte[] bytes = new byte[length];
+
+			System.arraycopy(bytecode, offset, bytes, 0, length);
+			redefineClasses(aClass, bytes, caller);
+		}
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException, LinkageError {
+	private static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		requireNonNull(aClass);
 		requireNonNull(bytecode);
