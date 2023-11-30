@@ -748,14 +748,17 @@ public final class Dynagent {
 			throw new IllegalCallerException();
 		}
 
-		final Instrumentation agent = getAgent(caller);
+		{
 
-		if (agent == null) {
+			final Instrumentation agent = getAgent(caller);
 
-			throw new IllegalCallerException();
+			if (agent == null) {
+
+				throw new IllegalCallerException();
+			}
+
+			agent.redefineClasses(aClass);
 		}
-
-		agent.redefineClasses(aClass);
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
