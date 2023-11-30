@@ -32,17 +32,26 @@ import java.lang.instrument.*;
 
 public final class DynagentImpl {
 
+	// Agent data:
 	private static volatile Instrumentation agent = null; // A valid `Instrumentation` instance
 
-	private static volatile boolean startup = false; // If Dynagent is installed at startup (via JVM options)
+	private static volatile boolean startup = false; // If Dynagent is installed at startup (via a JVM option)
 
-	private static final Object LOCK = new Object(); // An "installation lock"
+	// Multithreading only:
+	private static final Object LOCK = new Object(); // An "installation lock" required to be thread-safe
 
 	private DynagentImpl() throws Error, UnsupportedOperationException {
 
+		// This constructor is required only to fully prevent the default instantiation of this class.
+		// This class isn't needed to have any instances of it, so they're useless. Of course, an instance of
+		// this class is still can be instantiated with some "hacks", but who will do this and for what?
+
 		super();
-		throw new UnsupportedOperationException("An instance of this type (" + getClass().getTypeName() + ") can't be instantiated with a constructor!");
+		throw new UnsupportedOperationException("An instance of this type (" + getClass().getTypeName() +
+				") can't be instantiated with a constructor!"); // Prevent instantiation
 	}
+
+	// --------------------------- Stable API ---------------------------
 
 	/**
 	 * Checks if Dynagent is installed.
@@ -52,6 +61,7 @@ public final class DynagentImpl {
 	 */
 	public static boolean isLoaded() throws Error {
 
+		// Check for load state:
 		synchronized (LOCK) {
 
 			final Instrumentation agent = DynagentImpl.agent; // <- Efficient use of `volatile` fields
@@ -78,6 +88,8 @@ public final class DynagentImpl {
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
 	public static Instrumentation getAgent() throws Error, IllegalStateException, IllegalCallerException {
+
+		// Call to internal implementation:
 
 		try {
 
@@ -116,6 +128,8 @@ public final class DynagentImpl {
 		}
 	}
 
+	// --------------------------- Dynamic Installation ---------------------------
+
 	/**
 	 * Installs a Java agent dynamically (via the Attach API).
 	 *
@@ -134,6 +148,12 @@ public final class DynagentImpl {
 	 */
 	public static void agentmain(final String options, final Instrumentation agent) throws Error {
 
+		// This method will be called if Dynagent is installed dynamically (via the Attach API).
+		// So `premain()` won't be called if this method is called firstly!
+		//
+		// Note: Don't call `premain()` from this method.
+
+		// Installation of Dynagent:
 		if (agent != null) { // If we can install Dynagent right now...
 
 			synchronized (LOCK) {
@@ -147,6 +167,8 @@ public final class DynagentImpl {
 			}
 		}
 	}
+
+	// --------------------------- Startup Installation ---------------------------
 
 	/**
 	 * Installs a Java agent via JVM option (on JVM startup).
@@ -166,8 +188,14 @@ public final class DynagentImpl {
 	 */
 	public static void premain(final String options, final Instrumentation agent) throws Error {
 
+		// This method will be called if Dynagent is installed at JVM startup (via a JVM option).
+		// So `agentmain()` won't be called if this method is called firstly and if it won't call it!
+		//
+		// Note: `agentmain()` should always be called from this method.
+
 		agentmain(options, agent); // Install Dynagent like there's nothing special
 
+		// Try mark Dynagent as installed at JVM startup:
 		{
 
 			final Instrumentation installed = DynagentImpl.agent; // <- Efficient use of `volatile` fields
@@ -187,6 +215,8 @@ public final class DynagentImpl {
 		}
 	}
 
+	// --------------------------- Internal Implementation ---------------------------
+
 	@jdk.internal.reflect.CallerSensitiveAdapter()
 	private static Instrumentation getAgent(final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException {
 
@@ -202,7 +232,7 @@ public final class DynagentImpl {
 		} catch (final ClassNotFoundException notFound) {
 
 			// This will happen if this method is called from a temporary jar file generated at runtime
-			// by the program itself. If this method is called by an error from the file, it won't do anything
+			// by the program itself. If this method is called by an error from that file, it won't do anything
 			// which will prevent `NoClassDefFoundError` to be thrown. This is just a precaution, nothing more.
 			return null;
 		}
@@ -228,7 +258,7 @@ public final class DynagentImpl {
 
 			if (!isLoaded()) {
 
-				throw new IllegalStateException(); // Require installation
+				throw new IllegalStateException(); // Require installation (or throw an exception).
 			}
 		}
 	}
