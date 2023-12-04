@@ -154,11 +154,10 @@ public final class FileCleaner {
 				cleanup();
 			}
 
-			return true;
+		} catch (final SecurityException | IllegalStateException ignored) {
 
-		} catch (final SecurityException | IllegalStateException failed) {
-
-			return true;
 		}
+
+		return true;
 	}
 }
