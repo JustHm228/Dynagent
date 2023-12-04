@@ -66,7 +66,7 @@ public final class DynagentImpl {
 
 			final Instrumentation agent = DynagentImpl.agent; // <- Efficient use of `volatile` fields
 
-			return agent != null; // <- If Dynagent is installed, then `agent` is non-null
+			return agent != null; // <- If Dynagent is installed, then `agent` will be non-null
 		}
 	}
 
@@ -160,7 +160,7 @@ public final class DynagentImpl {
 
 				final Instrumentation installed = DynagentImpl.agent; // <- Efficient use of `volatile` fields
 
-				if (installed == null) { // And if Dynagent isn't installed yet...
+				if (installed == null) { // If Dynagent is already installed, then `installed` will be non-null
 
 					DynagentImpl.agent = agent; // Install Dynagent
 				}
@@ -200,7 +200,7 @@ public final class DynagentImpl {
 
 			final Instrumentation installed = DynagentImpl.agent; // <- Efficient use of `volatile` fields
 
-			if (installed != null) { // If Dynagent was successfully installed...
+			if (installed != null) { // <- If Dynagent was successfully installed, then `installed` will be non-null
 
 				synchronized (LOCK) {
 
@@ -247,7 +247,7 @@ public final class DynagentImpl {
 			final Instrumentation agent = DynagentImpl.agent; // <- Efficient use of `volatile` fields
 
 			// Just a security check to make sure this internal API was called from the stable API
-			// and not from the user. This should be the last check in the method.
+			// and not from the user. This should be the last check in the method before the return.
 			return caller == DynagentImpl.class || caller == Dynagent.class ? agent : null;
 		}
 	}
