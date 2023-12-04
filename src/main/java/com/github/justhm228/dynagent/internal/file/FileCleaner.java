@@ -59,21 +59,12 @@ public final class FileCleaner {
 
 	public static boolean isInstalled() throws Error {
 
-		return install() && uninstall();
+		return install() && uninstall(false);
 	}
 
 	public static boolean uninstall() throws Error {
 
-		try {
-
-			getRuntime().removeShutdownHook(HOOK);
-			cleanup();
-			return true;
-
-		} catch (final SecurityException | IllegalStateException failed) {
-
-			return true;
-		}
+		return uninstall(true);
 	}
 
 	public static void addTarget(final File target) throws Error {
@@ -150,5 +141,24 @@ public final class FileCleaner {
 	public static void removeTarget(final String target) throws Error {
 
 		removeTarget(target == null ? null : new File(target));
+	}
+
+	private static boolean uninstall(final boolean cleanup) throws Error {
+
+		try {
+
+			getRuntime().removeShutdownHook(HOOK);
+
+			if (cleanup) {
+
+				cleanup();
+			}
+
+			return true;
+
+		} catch (final SecurityException | IllegalStateException failed) {
+
+			return true;
+		}
 	}
 }
