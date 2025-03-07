@@ -24,20 +24,35 @@
 
 package com.github.justhm228.dynagent.test;
 
-public final class TestConstants {
+import java.lang.instrument.Instrumentation;
 
-	public static final Class<?>[] WHITELIST = {
-			AttachTest.class,
-			InternalTest.class,
-			SecurityTest.class, SecurityTest.WhitelistedZone.class,
-			UtilityTest.class,
-			LoaderTest.class,
-			MemoryTest.class,
-			TransformTest.class,
-	};
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import com.github.justhm228.dynagent.agent.Dynagent;
 
-	private TestConstants() throws UnsupportedOperationException {
+public class TransformTest {
 
-		throw new UnsupportedOperationException();
+	public TransformTest() {
+
+		super();
 	}
+
+	@BeforeAll()
+	public static void setup() {
+
+		if (!Dynagent.isInstalled()) {
+
+			Dynagent.install(TestConstants.WHITELIST);
+		}
+	}
+
+	private static Instrumentation getAgent() {
+
+		final Instrumentation agent = Dynagent.getAgent();
+
+		Assertions.assertNotNull(agent);
+		return agent;
+	}
+
+	// TODO 07.03.2025: Implement later.
 }
