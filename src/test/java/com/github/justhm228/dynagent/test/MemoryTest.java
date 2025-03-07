@@ -24,19 +24,45 @@
 
 package com.github.justhm228.dynagent.test;
 
-public final class TestConstants {
+import java.lang.instrument.Instrumentation;
 
-	public static final Class<?>[] WHITELIST = {
-			AttachTest.class,
-			InternalTest.class,
-			SecurityTest.class, SecurityTest.WhitelistedZone.class,
-			UtilityTest.class,
-			LoaderTest.class,
-			MemoryTest.class,
-	};
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import com.github.justhm228.dynagent.agent.Dynagent;
 
-	private TestConstants() throws UnsupportedOperationException {
+public class MemoryTest {
 
-		throw new UnsupportedOperationException();
+	public MemoryTest() {
+
+		super();
+	}
+
+	@BeforeAll()
+	public static void setup() {
+
+		if (!Dynagent.isInstalled()) {
+
+			Dynagent.install(TestConstants.WHITELIST);
+		}
+	}
+
+	private static Instrumentation getAgent() {
+
+		final Instrumentation agent = Dynagent.getAgent();
+
+		Assertions.assertNotNull(agent);
+		return agent;
+	}
+
+	@DisplayName("Dynagent.getObjectSize(Object)")
+	@Test()
+	public void test_getObjectSize() {
+
+		final Object sample = "12345";
+
+		System.out.println(getAgent().getObjectSize(sample));
+		// TODO 07.03.2025: Implement more tests later.
 	}
 }
