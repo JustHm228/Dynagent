@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2023-2025 JustHuman228
+ * Copyright (c) 2025 JustHuman228
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,10 +22,15 @@
  * SOFTWARE.
  */
 
-module dynagent.test {
+package com.github.justhm228.dynagent.test;
 
-	requires dynagent.base;
-	requires org.junit.jupiter.api;
+public final class TestConstants {
 
-	exports com.github.justhm228.dynagent.test to org.junit.platform.commons;
+	public static final Class<?>[] WHITELIST = {
+	};
+
+	private TestConstants() throws UnsupportedOperationException {
+
+		throw new UnsupportedOperationException();
+	}
 }
