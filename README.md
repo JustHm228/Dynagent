@@ -22,13 +22,17 @@ if (Dynagent.install()) {
 
 Dynagent will take care of the rest, allowing you to completely focus on your code.
 
-## How Does It Work?
+## Overview
 
 [Java agents](<https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/package-summary.html>)
 can be very useful in solving some very special cases. In particular, they're useful for the bytecode
 manipulation. These tasks require attaching a
 [Java agent](<https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/package-summary.html>) to
-the current process. The problem of attaching a
+the current process.
+
+### Alternatives
+
+The problem of attaching a
 [Java agent](<https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/package-summary.html>) to
 the current process is usually solved either by initially specifying the appropriate JVM option (which
 may not be very practical because JVM options aren't up to you), or by restarting the current process
@@ -36,7 +40,11 @@ to attach it. This library was developed by me as an alternative solution when I
 project that required a
 [Java agent](<https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/package-summary.html>) to be
 dynamically attached to the current process, but with conditions that prevented me from using the above
-solutions. Initially, I thought to use the
+solutions.
+
+### Algorithm
+
+Initially, I thought to use the
 [Attach API](<https://www.baeldung.com/java-instrumentation#dynamic-load>), but I found that it can't
 attach a Java agent to the current process. Then I thought to launch a separate process and through it
 attach a Java agent to the current process. It sounded difficult, but... it worked. After several
@@ -44,10 +52,10 @@ improvements I was able to optimize the code and save it all in a single jar fil
 a slightly modified implementation of that thing, but the algorithm hasn't changed significantly.
 The attaching is still works this way:
 
-1. Find a valid `java` binary to launch a temporary process.
-2. Dynamically create a temporary jar file which will be a Java agent to be attached.
-3. Dynamically create a temporary jar file which will attach a Java agent to the current process.
-4. Launch a temporary process of an "attacher" jar file and wait until it finishes.
+1. Find a valid `java` binary to run a temporary process.
+2. Dynamically create a temporary `.jar` file which will be a Java agent to be attached.
+3. Dynamically create a temporary `.jar` file which will attach a Java agent to the current process.
+4. Run a temporary process of an "attacher" `.jar` file and wait until it finishes.
 5. Check if we have a valid `Instrumentation` instance now.
 6. Delete temporary files.
 
@@ -56,7 +64,7 @@ itself is stored in the class `DynagentImpl` from the library's `internal` packa
 is stored in the class `DynagentInstaller` from the same package. **Direct access to the internal API
 isn't recommended** because the internal API can change a lot.
 
-## How to Use It?
+## Quick Start
 
 **Please note that Dynagent has a simple built-in security system that allows you to explicitly set
 which classes will have access to the attached
