@@ -24,15 +24,10 @@
 
 package com.github.justhm228.dynagent.test;
 
-public final class TestConstants {
+public class InternalTest {
 
-	public static final Class<?>[] WHITELIST = {
-			AttachTest.class,
-			InternalTest.class,
-	};
+	public InternalTest() {
 
-	private TestConstants() throws UnsupportedOperationException {
-
-		throw new UnsupportedOperationException();
+		super();
 	}
 }
