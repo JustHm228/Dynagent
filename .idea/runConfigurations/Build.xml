@@ -1,6 +1,5 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Build" type="MavenRunConfiguration" factoryName="Maven" editBeforeRun="true" focusToolWindowBeforeRun="true">
-    <output_file path="logs/latest.log" is_save="true" />
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings" />
