@@ -24,8 +24,12 @@
 
 module dynagent.test {
 
+	requires java.base;
+	requires java.instrument;
 	requires dynagent.base;
-	requires org.junit.jupiter.api;
+	requires transitive org.junit.jupiter.api;
 
 	exports com.github.justhm228.dynagent.test to org.junit.platform.commons;
+
+	opens com.github.justhm228.dynagent.test to org.junit.platform.commons;
 }

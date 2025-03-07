@@ -25,8 +25,8 @@
 module dynagent.base {
 
 	requires java.base;
-	requires transitive java.instrument;
-	requires jdk.attach;
+	requires java.instrument;
+	requires transitive jdk.attach;
 
 	exports com.github.justhm228.dynagent.agent;
 	exports com.github.justhm228.dynagent.internal.agent to java.instrument, dynagent.test;
