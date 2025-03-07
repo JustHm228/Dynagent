@@ -31,6 +31,7 @@ public final class TestConstants {
 			InternalTest.class,
 			SecurityTest.class, SecurityTest.WhitelistedZone.class,
 			UtilityTest.class,
+			LoaderTest.class,
 	};
 
 	private TestConstants() throws UnsupportedOperationException {
