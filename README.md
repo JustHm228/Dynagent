@@ -64,6 +64,11 @@ itself is stored in the class `DynagentImpl` from the library's `internal` packa
 is stored in the class `DynagentInstaller` from the same package. **Direct access to the internal API
 isn't recommended** because the internal API can change a lot.
 
+### Dependencies
+
+- [Java](<https://www.oracle.com/java/technologies/downloads/#java21>) 21
+- [JUnit5](<https://junit.org/junit5/>) _(only required to perform unit tests)_
+
 ## Quick Start
 
 **Please note that Dynagent has a simple built-in security system that allows you to explicitly set
