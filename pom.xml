@@ -64,8 +64,8 @@
 		<maven.resources.directory>src/main/resources</maven.resources.directory>
 		<maven.testResources.directory>src/test/resources</maven.testResources.directory>
 		<!-- <maven.plugin.validation>VERBOSE</maven.plugin.validation> -->
-		<maven.compiler.source>20</maven.compiler.source>
-		<maven.compiler.target>20</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<plugin.maven-compiler-plugin.version>3.11.0</plugin.maven-compiler-plugin.version>
 		<plugin.maven-resources-plugin.version>3.3.1</plugin.maven-resources-plugin.version>
