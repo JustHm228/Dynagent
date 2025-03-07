@@ -24,14 +24,52 @@
 
 package com.github.justhm228.dynagent.test;
 
-public final class TestConstants {
+import org.junit.jupiter.api.*;
+import org.opentest4j.TestAbortedException;
+import com.github.justhm228.dynagent.agent.Dynagent;
+import com.github.justhm228.dynagent.internal.agent.DynagentImpl;
 
-	public static final Class<?>[] WHITELIST = {
-			AttachTest.class,
-	};
+@TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
+public class AttachTest {
 
-	private TestConstants() throws UnsupportedOperationException {
+	public AttachTest() {
 
-		throw new UnsupportedOperationException();
+		super();
+	}
+
+	@DisplayName("Dynamic Installation")
+	@Test()
+	@Order(0)
+	public void testInstall() throws TestAbortedException, IllegalStateException {
+
+		Assumptions.assumeFalse(Dynagent.isInstalled());
+		Dynagent.install(TestConstants.WHITELIST);
+		Assertions.assertNotNull(Dynagent.getAgent());
+	}
+
+	@DisplayName("Installation Check")
+	@Test()
+	@Order(1)
+	public void testInstallCheck() throws AssertionError {
+
+		Assertions.assertTrue(Dynagent.isInstalled());
+	}
+
+	@DisplayName("Internal State")
+	@Test()
+	@Order(2)
+	@Tag("internal")
+	public void testInternal() {
+
+		Assertions.assertTrue(DynagentImpl.isLoaded());
+	}
+
+	@DisplayName("Startup Phase")
+	@Test()
+	@Order(3)
+	@Tag("internal")
+	public void testState() {
+
+		DynagentImpl.isStartup();
 	}
 }
