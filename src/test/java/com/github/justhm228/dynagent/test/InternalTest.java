@@ -24,10 +24,15 @@
 
 package com.github.justhm228.dynagent.test;
 
+import org.junit.jupiter.api.Disabled;
+
+@Disabled("Implement later")
 public class InternalTest {
 
 	public InternalTest() {
 
 		super();
 	}
+
+	// TODO 07.03.2025: Implement later.
 }
