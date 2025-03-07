@@ -136,7 +136,6 @@ least as long as my other projects uses it). You just have to wait!
 - [ ] Make the built-in security system more flexible.
 - [ ] ~~Add built-in support for bytecode manipulation frameworks like [ASM](<https://asm.ow2.io>),
   [ByteBuddy](<https://bytebuddy.net>) and [Javassist](<https://www.javassist.org>).~~
-- [ ] Ensure in full Android support (because the default implementation mayn't work on Android).
 - [ ] Publish to Maven.
 - [ ] Try to create a custom, more performant `Instrumentation` implementation using native JVM functions,
   i.e. without resource-intensive dynamic attaching of the
