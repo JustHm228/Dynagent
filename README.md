@@ -42,7 +42,7 @@ project that required a
 dynamically attached to the current process, but with conditions that prevented me from using the above
 solutions.
 
-### Algorithm
+### Used Implementation
 
 Initially, I thought to use the
 [Attach API](<https://www.baeldung.com/java-instrumentation#dynamic-load>), but I found that it can't
