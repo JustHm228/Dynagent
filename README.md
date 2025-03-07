@@ -3,10 +3,9 @@
 **Dynagent** _(**Dyn**amic Java **agent**)_ is a small, very lightweight library which allows you to
 dynamically attach a
 [Java agent](<https://docs.oracle.com/javase/8/docs/api/java/lang/instrument/package-summary.html>) to
-the current VM. This allows you to dynamically create a valid `Instrumentation` instance and use all of
-its functionality without having to separately compile the Java agent as a separate file and specify
-the path to it via a JVM option or to restart the current process (so this can be very useful for the
-bytecode manipulation). To access `Instrumentation`, you need to do this:
+the current virtual machine. This allows you to take a valid `Instrumentation` instance and use all of
+its functionality without having to use additional command line options on application startup.
+Here is an example:
 
 ```java
 if (Dynagent.install()) {
