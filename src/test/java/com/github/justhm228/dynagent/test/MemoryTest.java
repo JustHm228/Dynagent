@@ -25,7 +25,6 @@
 package com.github.justhm228.dynagent.test;
 
 import java.lang.instrument.Instrumentation;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
