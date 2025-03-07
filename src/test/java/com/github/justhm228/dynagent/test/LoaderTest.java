@@ -26,10 +26,8 @@ package com.github.justhm228.dynagent.test;
 
 import java.lang.instrument.Instrumentation;
 import java.util.Arrays;
-
 import org.junit.jupiter.api.*;
 import com.github.justhm228.dynagent.agent.Dynagent;
-
 import static java.util.Arrays.deepToString;
 
 public class LoaderTest {
