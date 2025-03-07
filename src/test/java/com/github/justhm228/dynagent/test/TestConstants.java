@@ -29,6 +29,7 @@ public final class TestConstants {
 	public static final Class<?>[] WHITELIST = {
 			AttachTest.class,
 			InternalTest.class,
+			SecurityTest.class, SecurityTest.WhitelistedZone.class,
 	};
 
 	private TestConstants() throws UnsupportedOperationException {
