@@ -40,7 +40,7 @@ public final class Dynagent {
 	// Whitelisted classes:
 	private static final Set<Class<?>> WHITELIST = new HashSet<>(1); // <- At least a single class WILL be whitelisted
 
-	private Dynagent() throws Error, UnsupportedOperationException {
+	private Dynagent() throws UnsupportedOperationException {
 
 		// This constructor is required only to fully prevent the default instantiation of this class.
 		// This class isn't needed to have any instances of it, so they're useless. Of course, an instance of
@@ -55,7 +55,7 @@ public final class Dynagent {
 	// ...
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static boolean install(final Class<?>[] whitelisted) throws Error, NullPointerException, IllegalStateException, IllegalCallerException {
+	public static boolean install(final Class<?>[] whitelisted) throws NullPointerException, IllegalStateException, IllegalCallerException {
 
 		// Call to internal implementation:
 
@@ -71,7 +71,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static boolean install() throws Error, IllegalStateException, IllegalCallerException {
+	public static boolean install() throws IllegalStateException, IllegalCallerException {
 
 		// Call to internal implementation:
 
@@ -85,14 +85,14 @@ public final class Dynagent {
 		}
 	}
 
-	public static boolean isInstalled() throws Error {
+	public static boolean isInstalled() {
 
 		return DynagentInstaller.isInstalled(); // Call to internal API
 	}
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static Instrumentation getAgent() throws Error, IllegalStateException, IllegalCallerException {
+	public static Instrumentation getAgent() throws IllegalStateException, IllegalCallerException {
 
 		// Call to internal implementation:
 		try {
@@ -107,7 +107,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static long getObjectSize(final Object instance) throws Error, IllegalStateException, IllegalCallerException, NullPointerException {
+	public static long getObjectSize(final Object instance) throws IllegalStateException, IllegalCallerException, NullPointerException {
 
 		// Call to internal implementation:
 		try {
@@ -122,7 +122,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static boolean isModifiableModule(final Module module) throws Error, IllegalStateException, IllegalCallerException, NullPointerException {
+	public static boolean isModifiableModule(final Module module) throws IllegalStateException, IllegalCallerException, NullPointerException {
 
 		// Call to internal implementation:
 		try {
@@ -137,7 +137,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineModule(final Module module, final Set<Module> reads, final Map<String, Set<Module>> exports, final Map<String, Set<Module>> opens, final Set<Class<?>> uses, final Map<Class<?>, List<Class<?>>> provides) throws Error, IllegalStateException, IllegalCallerException, IllegalArgumentException, UnmodifiableModuleException {
+	public static void redefineModule(final Module module, final Set<Module> reads, final Map<String, Set<Module>> exports, final Map<String, Set<Module>> opens, final Set<Class<?>> uses, final Map<Class<?>, List<Class<?>>> provides) throws IllegalStateException, IllegalCallerException, IllegalArgumentException, UnmodifiableModuleException {
 
 		// Call to internal implementation:
 		try {
@@ -152,7 +152,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void appendToBootstrapClassLoaderSearch(final JarFile jar) throws Error, IllegalStateException, IllegalCallerException, NullPointerException {
+	public static void appendToBootstrapClassLoaderSearch(final JarFile jar) throws IllegalStateException, IllegalCallerException, NullPointerException {
 
 		// Call to internal implementation:
 		try {
@@ -167,7 +167,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void appendToSystemClassLoaderSearch(final JarFile jar) throws Error, IllegalStateException, IllegalCallerException, NullPointerException {
+	public static void appendToSystemClassLoaderSearch(final JarFile jar) throws IllegalStateException, IllegalCallerException, NullPointerException {
 
 		// Call to internal implementation:
 		try {
@@ -182,7 +182,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static Class<?>[] getAllLoadedClasses() throws Error, IllegalStateException, IllegalCallerException {
+	public static Class<?>[] getAllLoadedClasses() throws IllegalStateException, IllegalCallerException {
 
 		// Call to internal implementation:
 		try {
@@ -197,7 +197,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static Class<?>[] getInitiatedClasses(final ClassLoader classloader) throws Error, IllegalStateException, IllegalCallerException {
+	public static Class<?>[] getInitiatedClasses(final ClassLoader classloader) throws IllegalStateException, IllegalCallerException {
 
 		// Call to internal implementation:
 		try {
@@ -212,7 +212,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static boolean isModifiableClass(final Class<?> aClass) throws Error, IllegalStateException, IllegalCallerException {
+	public static boolean isModifiableClass(final Class<?> aClass) throws IllegalStateException, IllegalCallerException {
 
 		// Call to internal implementation:
 		try {
@@ -227,7 +227,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static boolean isRetransformClassesSupported() throws Error, IllegalStateException, IllegalCallerException {
+	public static boolean isRetransformClassesSupported() throws IllegalStateException, IllegalCallerException {
 
 		// Call to internal implementation:
 		try {
@@ -242,7 +242,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static boolean isRedefineClassesSupported() throws Error, IllegalStateException, IllegalCallerException {
+	public static boolean isRedefineClassesSupported() throws IllegalStateException, IllegalCallerException {
 
 		// Call to internal implementation:
 		try {
@@ -257,7 +257,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static boolean isNativeMethodPrefixSupported() throws Error, IllegalStateException, IllegalCallerException {
+	public static boolean isNativeMethodPrefixSupported() throws IllegalStateException, IllegalCallerException {
 
 		// Call to internal implementation:
 		try {
@@ -272,7 +272,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final ClassDefinition[] classes) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
+	public static void redefineClasses(final ClassDefinition[] classes) throws NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		// Call to internal implementation:
 		try {
@@ -287,7 +287,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final ClassDefinition aClass) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
+	public static void redefineClasses(final ClassDefinition aClass) throws NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		// Call to internal implementation:
 		try {
@@ -302,7 +302,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final Class<?> aClass, final File bytecode) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException,
+	public static void redefineClasses(final Class<?> aClass, final File bytecode) throws NullPointerException, IllegalStateException, IllegalCallerException, IOException,
 			ClassNotFoundException, UnmodifiableClassException {
 
 		// Call to internal implementation:
@@ -318,7 +318,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final Class<?> aClass, final InputStream bytecode) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException,
+	public static void redefineClasses(final Class<?> aClass, final InputStream bytecode) throws NullPointerException, IllegalStateException, IllegalCallerException, IOException,
 			ClassNotFoundException, UnmodifiableClassException {
 
 		// Call to internal implementation:
@@ -334,7 +334,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final Class<?> aClass, final ByteBuffer bytecode) throws Error, NullPointerException, IllegalStateException, IllegalCallerException,
+	public static void redefineClasses(final Class<?> aClass, final ByteBuffer bytecode) throws NullPointerException, IllegalStateException, IllegalCallerException,
 			ClassNotFoundException, UnmodifiableClassException {
 
 		// Call to internal implementation:
@@ -350,7 +350,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final int offset, final int length) throws Error, NullPointerException, IndexOutOfBoundsException, IllegalStateException, ClassNotFoundException, UnmodifiableClassException {
+	public static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final int offset, final int length) throws NullPointerException, IndexOutOfBoundsException, IllegalStateException, ClassNotFoundException, UnmodifiableClassException {
 
 		// Call to internal implementation:
 		try {
@@ -365,7 +365,7 @@ public final class Dynagent {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static void redefineClasses(final Class<?> aClass, final byte[] bytecode) throws Error, NullPointerException, IllegalStateException, ClassNotFoundException, UnmodifiableClassException {
+	public static void redefineClasses(final Class<?> aClass, final byte[] bytecode) throws NullPointerException, IllegalStateException, ClassNotFoundException, UnmodifiableClassException {
 
 		// Call to internal implementation:
 		try {
@@ -381,7 +381,7 @@ public final class Dynagent {
 	// --------------------------- Internal Implementation ---------------------------
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static boolean install(final Class<?>[] whitelisted, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException {
+	private static boolean install(final Class<?>[] whitelisted, final Class<?> caller) throws NullPointerException, IllegalStateException, IllegalCallerException {
 
 		// Some checks:
 		requireNonNull(whitelisted); // Require non-null whitelist
@@ -434,7 +434,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static boolean install(final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException {
+	private static boolean install(final Class<?> caller) throws IllegalStateException, IllegalCallerException {
 
 		// Some checks:
 		requireNotInstalled(); // Require not installed
@@ -469,7 +469,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static Instrumentation getAgent(final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException {
+	private static Instrumentation getAgent(final Class<?> caller) throws IllegalStateException, IllegalCallerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -494,7 +494,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static long getObjectSize(final Object instance, final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException, NullPointerException {
+	private static long getObjectSize(final Object instance, final Class<?> caller) throws IllegalStateException, IllegalCallerException, NullPointerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -524,7 +524,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static boolean isModifiableModule(final Module module, final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException, NullPointerException {
+	private static boolean isModifiableModule(final Module module, final Class<?> caller) throws IllegalStateException, IllegalCallerException, NullPointerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -554,7 +554,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineModule(final Module module, final Set<Module> reads, final Map<String, Set<Module>> exports, final Map<String, Set<Module>> opens, final Set<Class<?>> uses, final Map<Class<?>, List<Class<?>>> provides, final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException, IllegalArgumentException, UnmodifiableModuleException {
+	private static void redefineModule(final Module module, final Set<Module> reads, final Map<String, Set<Module>> exports, final Map<String, Set<Module>> opens, final Set<Class<?>> uses, final Map<Class<?>, List<Class<?>>> provides, final Class<?> caller) throws IllegalStateException, IllegalCallerException, IllegalArgumentException, UnmodifiableModuleException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -584,7 +584,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void appendToBootstrapClassLoaderSearch(final JarFile jar, final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException, NullPointerException {
+	private static void appendToBootstrapClassLoaderSearch(final JarFile jar, final Class<?> caller) throws IllegalStateException, IllegalCallerException, NullPointerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -614,7 +614,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void appendToSystemClassLoaderSearch(final JarFile jar, final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException, NullPointerException {
+	private static void appendToSystemClassLoaderSearch(final JarFile jar, final Class<?> caller) throws IllegalStateException, IllegalCallerException, NullPointerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -644,7 +644,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static Class<?>[] getAllLoadedClasses(final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException {
+	private static Class<?>[] getAllLoadedClasses(final Class<?> caller) throws IllegalStateException, IllegalCallerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -674,7 +674,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static Class<?>[] getInitiatedClasses(final ClassLoader classloader, final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException {
+	private static Class<?>[] getInitiatedClasses(final ClassLoader classloader, final Class<?> caller) throws IllegalStateException, IllegalCallerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -704,7 +704,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static boolean isModifiableClass(final Class<?> aClass, final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException, NullPointerException {
+	private static boolean isModifiableClass(final Class<?> aClass, final Class<?> caller) throws IllegalStateException, IllegalCallerException, NullPointerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -734,7 +734,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static boolean isRetransformClassesSupported(final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException {
+	private static boolean isRetransformClassesSupported(final Class<?> caller) throws IllegalStateException, IllegalCallerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -764,7 +764,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static boolean isRedefineClassesSupported(final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException {
+	private static boolean isRedefineClassesSupported(final Class<?> caller) throws IllegalStateException, IllegalCallerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -794,7 +794,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static boolean isNativeMethodPrefixSupported(final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException {
+	private static boolean isNativeMethodPrefixSupported(final Class<?> caller) throws IllegalStateException, IllegalCallerException {
 
 		// Some checks:
 		requireInstalled(); // Require installation
@@ -825,7 +825,7 @@ public final class Dynagent {
 
 	// ...
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final ClassDefinition[] classes, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
+	private static void redefineClasses(final ClassDefinition[] classes, final Class<?> caller) throws NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		// Some checks:
 		requireNonNull(classes); // Require a non-null array
@@ -878,7 +878,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final ClassDefinition aClass, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
+	private static void redefineClasses(final ClassDefinition aClass, final Class<?> caller) throws NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		// Some checks:
 		requireNonNull(aClass); // Require non-null definition
@@ -909,7 +909,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final Class<?> aClass, final File bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException,
+	private static void redefineClasses(final Class<?> aClass, final File bytecode, final Class<?> caller) throws NullPointerException, IllegalStateException, IllegalCallerException, IOException,
 			ClassNotFoundException, UnmodifiableClassException {
 
 		// Some checks:
@@ -937,7 +937,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final Class<?> aClass, final InputStream bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, IOException,
+	private static void redefineClasses(final Class<?> aClass, final InputStream bytecode, final Class<?> caller) throws NullPointerException, IllegalStateException, IllegalCallerException, IOException,
 			ClassNotFoundException, UnmodifiableClassException {
 
 		// Some checks:
@@ -959,7 +959,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final Class<?> aClass, final ByteBuffer bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException,
+	private static void redefineClasses(final Class<?> aClass, final ByteBuffer bytecode, final Class<?> caller) throws NullPointerException, IllegalStateException, IllegalCallerException,
 			ClassNotFoundException, UnmodifiableClassException {
 
 		// Some checks:
@@ -995,7 +995,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final int offset, final int length, final Class<?> caller) throws Error, NullPointerException, IndexOutOfBoundsException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
+	private static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final int offset, final int length, final Class<?> caller) throws NullPointerException, IndexOutOfBoundsException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		// Some checks:
 
@@ -1032,7 +1032,7 @@ public final class Dynagent {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final Class<?> caller) throws Error, NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
+	private static void redefineClasses(final Class<?> aClass, final byte[] bytecode, final Class<?> caller) throws NullPointerException, IllegalStateException, IllegalCallerException, ClassNotFoundException, UnmodifiableClassException {
 
 		// Some checks:
 
@@ -1052,7 +1052,7 @@ public final class Dynagent {
 		redefineClasses(new ClassDefinition(aClass, bytecode), caller); // Wrap a valid byte array to `ClassDefinition`
 	}
 
-	private static void requireInstalled() throws Error, IllegalStateException {
+	private static void requireInstalled() throws IllegalStateException {
 
 		if (!isInstalled()) {
 
@@ -1060,7 +1060,7 @@ public final class Dynagent {
 		}
 	}
 
-	private static void requireNotInstalled() throws Error, IllegalStateException {
+	private static void requireNotInstalled() throws IllegalStateException {
 
 		if (isInstalled()) {
 

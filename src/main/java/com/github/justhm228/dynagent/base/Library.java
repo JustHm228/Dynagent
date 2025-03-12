@@ -42,7 +42,7 @@ public final class Library {
 
 	public static final int VERSION_CODE = 0;
 
-	private Library() throws Error, UnsupportedOperationException {
+	private Library() throws UnsupportedOperationException {
 
 		super();
 		throw new UnsupportedOperationException("An instance of this type (" + getClass().getTypeName() + ") can't be instantiated with a constructor!");

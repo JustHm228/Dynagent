@@ -40,7 +40,7 @@ public final class DynagentImpl {
 	// Multithreading only:
 	private static final Object LOCK = new Object(); // An "installation lock" required to be thread-safe
 
-	private DynagentImpl() throws Error, UnsupportedOperationException {
+	private DynagentImpl() throws UnsupportedOperationException {
 
 		// This constructor is required only to fully prevent the default instantiation of this class.
 		// This class isn't needed to have any instances of it, so they're useless. Of course, an instance of
@@ -59,7 +59,7 @@ public final class DynagentImpl {
 	 * @return true if Dynagent is installed; otherwise - false.
 	 * @throws Error If something went wrong in the JVM.
 	 */
-	public static boolean isLoaded() throws Error {
+	public static boolean isLoaded() {
 
 		// Check for load state:
 		synchronized (LOCK) {
@@ -87,7 +87,7 @@ public final class DynagentImpl {
 	 */
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static Instrumentation getAgent() throws Error, IllegalStateException, IllegalCallerException {
+	public static Instrumentation getAgent() throws IllegalStateException, IllegalCallerException {
 
 		// Call to internal implementation:
 
@@ -119,7 +119,7 @@ public final class DynagentImpl {
 	 * @throws Error If something went wrong in the JVM.
 	 * @throws IllegalStateException If Dynagent isn't installed yet.
 	 */
-	public static boolean isStartup() throws Error, IllegalStateException {
+	public static boolean isStartup() throws IllegalStateException {
 
 		synchronized (LOCK) {
 
@@ -146,7 +146,7 @@ public final class DynagentImpl {
 	 * @param agent An Instrumentation instance passed to the Java agent.
 	 * @throws Error If something went wrong in the JVM.
 	 */
-	public static void agentmain(final String options, final Instrumentation agent) throws Error {
+	public static void agentmain(final String options, final Instrumentation agent) {
 
 		// This method will be called if Dynagent is installed dynamically (via the Attach API).
 		// So `premain()` won't be called if this method is called firstly!
@@ -186,7 +186,7 @@ public final class DynagentImpl {
 	 * @param agent An Instrumentation instance passed to the Java agent.
 	 * @throws Error If something went wrong in the JVM.
 	 */
-	public static void premain(final String options, final Instrumentation agent) throws Error {
+	public static void premain(final String options, final Instrumentation agent) {
 
 		// This method will be called if Dynagent is installed at JVM startup (via a JVM option).
 		// So `agentmain()` won't be called if this method is called firstly and if it won't call it!
@@ -218,7 +218,7 @@ public final class DynagentImpl {
 	// --------------------------- Internal Implementation ---------------------------
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static Instrumentation getAgent(final Class<?> caller) throws Error, IllegalStateException, IllegalCallerException {
+	private static Instrumentation getAgent(final Class<?> caller) throws IllegalStateException, IllegalCallerException {
 
 		requireInstalled(); // Require installation of Dynagent (or throw an exception)
 
@@ -252,7 +252,7 @@ public final class DynagentImpl {
 		}
 	}
 
-	private static void requireInstalled() throws Error, IllegalStateException {
+	private static void requireInstalled() throws IllegalStateException {
 
 		synchronized (LOCK) {
 

@@ -34,13 +34,13 @@ public final class FileCleaner {
 
 	private static final List<File> TARGETS = new ArrayList<>(1);
 
-	private FileCleaner() throws Error, UnsupportedOperationException {
+	private FileCleaner() throws UnsupportedOperationException {
 
 		super();
 		throw new UnsupportedOperationException("An instance of this type (" + getClass().getTypeName() + ") can't be instantiated with a constructor!");
 	}
 
-	public static boolean install() throws Error {
+	public static boolean install() {
 
 		try {
 
@@ -57,17 +57,17 @@ public final class FileCleaner {
 		}
 	}
 
-	public static boolean isInstalled() throws Error {
+	public static boolean isInstalled() {
 
 		return install() && uninstall(false);
 	}
 
-	public static boolean uninstall() throws Error {
+	public static boolean uninstall() {
 
 		return uninstall(true);
 	}
 
-	public static void addTarget(final File target) throws Error {
+	public static void addTarget(final File target) {
 
 		if (target == null) {
 
@@ -80,12 +80,12 @@ public final class FileCleaner {
 		}
 	}
 
-	public static void addTarget(final String target) throws Error {
+	public static void addTarget(final String target) {
 
 		addTarget(target == null ? null : new File(target));
 	}
 
-	public static void cleanup() throws Error {
+	public static void cleanup() {
 
 		synchronized (TARGETS) {
 
@@ -102,7 +102,7 @@ public final class FileCleaner {
 		}
 	}
 
-	public static void clean(File target) throws Error {
+	public static void clean(File target) {
 
 		if (target == null) {
 
@@ -120,12 +120,12 @@ public final class FileCleaner {
 		}
 	}
 
-	public static void clean(final String target) throws Error {
+	public static void clean(final String target) {
 
 		clean(target == null ? null : new File(target));
 	}
 
-	public static void removeTarget(final File target) throws Error {
+	public static void removeTarget(final File target) {
 
 		if (target == null) {
 
@@ -138,12 +138,12 @@ public final class FileCleaner {
 		}
 	}
 
-	public static void removeTarget(final String target) throws Error {
+	public static void removeTarget(final String target) {
 
 		removeTarget(target == null ? null : new File(target));
 	}
 
-	private static boolean uninstall(final boolean cleanup) throws Error {
+	private static boolean uninstall(final boolean cleanup) {
 
 		try {
 

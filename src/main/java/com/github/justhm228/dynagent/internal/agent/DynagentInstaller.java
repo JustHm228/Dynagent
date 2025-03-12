@@ -50,13 +50,13 @@ import static java.util.regex.Pattern.*;
 
 public final class DynagentInstaller {
 
-	private DynagentInstaller() throws Error, UnsupportedOperationException {
+	private DynagentInstaller() throws UnsupportedOperationException {
 
 		super();
 		throw new UnsupportedOperationException("An instance of this type (" + getClass().getTypeName() + ") can't be instantiated with a constructor!");
 	}
 
-	public static void main(final String... args) throws Error {
+	public static void main(final String... args) {
 
 		if (args.length != 2) { // If the specified argument list length isn't a length of valid argument list...
 
@@ -139,7 +139,7 @@ public final class DynagentInstaller {
 
 	@jdk.internal.reflect.CallerSensitive()
 	@jdk.internal.vm.annotation.ForceInline()
-	public static boolean install() throws Error, IllegalCallerException {
+	public static boolean install() throws IllegalCallerException {
 
 		try {
 
@@ -151,12 +151,12 @@ public final class DynagentInstaller {
 		}
 	}
 
-	public static boolean isInstalled() throws Error {
+	public static boolean isInstalled() {
 
 		return DynagentImpl.isLoaded();
 	}
 
-	private static void usage(final PrintStream out) throws Error {
+	private static void usage(final PrintStream out) {
 
 		// Print the help message to the specified stream if it's non-null:
 		if (out != null) {
@@ -172,7 +172,7 @@ public final class DynagentInstaller {
 	}
 
 	@jdk.internal.reflect.CallerSensitiveAdapter()
-	private static boolean install(final Class<?> caller) throws Error, IllegalCallerException {
+	private static boolean install(final Class<?> caller) throws IllegalCallerException {
 
 		if (isInstalled()) {
 
@@ -232,7 +232,7 @@ public final class DynagentInstaller {
 		}
 	}
 
-	private static String findPid() throws Error {
+	private static String findPid() {
 
 		try {
 
@@ -244,7 +244,7 @@ public final class DynagentInstaller {
 		}
 	}
 
-	private static String buildAgent() throws Error {
+	private static String buildAgent() {
 
 		try {
 
@@ -358,7 +358,7 @@ public final class DynagentInstaller {
 		}
 	}
 
-	private static String buildInstaller() throws Error {
+	private static String buildInstaller() {
 
 		final String classname = DynagentInstaller.class.getTypeName(); // A main class to be included in a jar file
 
@@ -470,7 +470,7 @@ public final class DynagentInstaller {
 		}
 	}
 
-	private static String findJava() throws Error {
+	private static String findJava() {
 
 		try {
 
